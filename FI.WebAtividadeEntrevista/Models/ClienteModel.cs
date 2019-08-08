@@ -12,7 +12,12 @@ namespace WebAtividadeEntrevista.Models
     public class ClienteModel
     {
         public long Id { get; set; }
-        
+        /// <summary>
+        /// CPF
+        /// </summary>
+       
+        public string CPF { get; set; }
+
         /// <summary>
         /// CEP
         /// </summary>

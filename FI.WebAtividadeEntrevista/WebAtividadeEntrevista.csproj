@@ -183,6 +183,7 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <Compile Include="Class1.cs" />
     <Compile Include="Controllers\ClienteController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
@@ -272,6 +273,7 @@
     <Content Include="Scripts\Clientes\FI.ListClientes.js" />
     <Content Include="Scripts\Clientes\FI.Clientes.js" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
+    <Content Include="Scripts\Clientes\Utilidades.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.js" />
@@ -389,6 +391,7 @@
     <Content Include="Scripts\jtable\themes\metro\red\jtable.min.css" />
     <Content Include="Scripts\jtable\themes\metro\red\loading.gif" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\plugins\imask.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Web.config">
@@ -431,6 +434,7 @@
     <Content Include="Scripts\jtable\themes\basic\jtable_basic.less" />
     <Content Include="Views\Cliente\Alterar.cshtml" />
     <Content Include="Views\Cliente\Forms.cshtml" />
+    <Content Include="Scripts\plugins\jquery.mask.js" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\FI.AtividadeEntrevista\FI.AtividadeEntrevista.csproj">
