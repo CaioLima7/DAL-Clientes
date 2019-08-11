@@ -8,9 +8,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FI.AtividadeEntrevista", "FI.AtividadeEntrevista\FI.AtividadeEntrevista.csproj", "{38EFE996-02D9-4D78-B084-F3B5602E6ED2}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{DE34D322-9992-42D5-BE57-BE2A31E06AFB}"
-	ProjectSection(SolutionItems) = preProject
-		teste.json = teste.json
-	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
