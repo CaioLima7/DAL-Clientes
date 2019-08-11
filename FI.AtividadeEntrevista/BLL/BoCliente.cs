@@ -19,6 +19,16 @@ namespace FI.AtividadeEntrevista.BLL
         }
 
         /// <summary>
+        /// Inclui um novo cliente
+        /// </summary>
+        /// <param name="beneficiario">Objeto do beneficiario</param>
+        public long IncluirBeneficiario(DML.ClienteBeneficiario beneficiario)
+        {
+            DAL.DaoCliente cli = new DAL.DaoCliente();
+            return cli.IncluirBenificiario(beneficiario);
+        }
+
+        /// <summary>
         /// Altera um cliente
         /// </summary>
         /// <param name="cliente">Objeto de cliente</param>
@@ -39,6 +49,12 @@ namespace FI.AtividadeEntrevista.BLL
             return cli.Consultar(id);
         }
 
+        public string ConsultarCPF(string CPF)
+        {
+            DAL.DaoCliente cli = new DAL.DaoCliente();
+            return cli.ConsultarCPF(CPF);
+        }
+
         /// <summary>
         /// Excluir o cliente pelo id
         /// </summary>
@@ -48,6 +64,23 @@ namespace FI.AtividadeEntrevista.BLL
         {
             DAL.DaoCliente cli = new DAL.DaoCliente();
             cli.Excluir(id);
+        }
+        /// <summary>
+        /// Excluir o cliente pelo id
+        /// </summary>
+        /// <param name="id">id do cliente</param>
+        /// <returns></returns>
+        public void ExcluirBeneficiario(long Id)
+        {
+            DAL.DaoCliente cli = new DAL.DaoCliente();
+            cli.ExcluirBeneficiario(Id);
+        }
+        public long BuscarId(string CPF)
+        {
+            DAL.DaoCliente cli = new DAL.DaoCliente();
+            var beneficiario = cli.BuscarId();
+            var BeneficiarioId = beneficiario.Where(b => b.CPF == CPF);
+            return BeneficiarioId.FirstOrDefault().Id ;
         }
 
         /// <summary>
@@ -59,6 +92,14 @@ namespace FI.AtividadeEntrevista.BLL
             return cli.Listar();
         }
 
+        /// <summary>
+        /// Lista os clientes
+        /// </summary>
+        public List<DML.ClienteBeneficiario> ListarBeneficiarios()
+        {
+            DAL.DaoCliente cli = new DAL.DaoCliente();
+            return cli.ListarBeneficiarios();
+        }
         /// <summary>
         /// Lista os clientes
         /// </summary>

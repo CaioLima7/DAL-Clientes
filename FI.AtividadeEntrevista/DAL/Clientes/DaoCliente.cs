@@ -39,6 +39,21 @@ namespace FI.AtividadeEntrevista.DAL
             return ret;
         }
 
+        internal long IncluirBenificiario(ClienteBeneficiario cliente)
+        {
+            List<System.Data.SqlClient.SqlParameter> parametros = new List<System.Data.SqlClient.SqlParameter>();
+
+            parametros.Add(new System.Data.SqlClient.SqlParameter("Nome", cliente.Nome));
+            parametros.Add(new System.Data.SqlClient.SqlParameter("CPF", cliente.CPF));
+            parametros.Add(new System.Data.SqlClient.SqlParameter("IdCliente", cliente.IdCliente));
+
+            DataSet ds = base.Consultar("FI_SP_IncBeneficiarioV2", parametros);
+            long ret = 0;
+            if (ds.Tables[0].Rows.Count > 0)
+                long.TryParse(ds.Tables[0].Rows[0][0].ToString(), out ret);
+            return ret;
+        }
+
         /// <summary>
         /// Inclui um novo cliente
         /// </summary>
@@ -53,6 +68,25 @@ namespace FI.AtividadeEntrevista.DAL
             List<DML.Cliente> cli = Converter(ds);
 
             return cli.FirstOrDefault();
+        }
+
+        internal string ConsultarCPF(string CPF)
+        {
+            List<System.Data.SqlClient.SqlParameter> parametros = new List<System.Data.SqlClient.SqlParameter>();
+
+            parametros.Add(new System.Data.SqlClient.SqlParameter("CPF", CPF));
+
+            DataSet ds = base.Consultar("FI_SP_ConsClienteCPF", parametros);
+
+            try
+            {
+                string idCliente = ds.Tables[0].Rows[0][0].ToString();
+                return idCliente;
+            }
+            catch (Exception)
+            {
+                return "CPF Não encontrado";
+            }
         }
 
         internal bool VerificarExistencia(string CPF)
@@ -104,6 +138,48 @@ namespace FI.AtividadeEntrevista.DAL
         }
 
         /// <summary>
+        /// Lista todos os clientes 
+        /// </summary>
+        internal List<DML.ClienteBeneficiario> ListarBeneficiarios()
+        {
+            List<System.Data.SqlClient.SqlParameter> parametros = new List<System.Data.SqlClient.SqlParameter>();
+
+            DataSet ds = base.Consultar("FI_SP_ConsBeneficiario", parametros);
+
+            var lista = new List<ClienteBeneficiario>();
+
+            foreach (DataRow row in ds.Tables[0].Rows)
+            {
+                lista.Add(new ClienteBeneficiario()
+                {
+                    CPF = row.Field<string>("CPF"),
+                    Nome = row.Field<string>("Nome")
+                });
+            }
+
+            return lista;
+        }
+        internal List<DML.ClienteBeneficiario> BuscarId()
+        {
+            List<System.Data.SqlClient.SqlParameter> parametros = new List<System.Data.SqlClient.SqlParameter>();
+
+            DataSet ds = base.Consultar("FI_SP_BuscarId", parametros);
+
+            var lista = new List<ClienteBeneficiario>();
+
+            foreach (DataRow row in ds.Tables[0].Rows)
+            {
+                lista.Add(new ClienteBeneficiario()
+                {
+                    Id = row.Field<long>("Id"),
+                    CPF = row.Field<string>("CPF"),
+                });
+            }
+
+            return lista;
+        }
+
+        /// <summary>
         /// Inclui um novo cliente
         /// </summary>
         /// <param name="cliente">Objeto de cliente</param>
@@ -138,6 +214,19 @@ namespace FI.AtividadeEntrevista.DAL
             parametros.Add(new System.Data.SqlClient.SqlParameter("Id", Id));
 
             base.Executar("FI_SP_DelCliente", parametros);
+        }
+
+        /// <summary>
+        /// Excluir Cliente
+        /// </summary>
+        /// <param name="cliente">Objeto de cliente</param>
+        internal void ExcluirBeneficiario(long Id)
+        {
+            List<System.Data.SqlClient.SqlParameter> parametros = new List<System.Data.SqlClient.SqlParameter>();
+
+            parametros.Add(new System.Data.SqlClient.SqlParameter("ID", Id));
+
+            base.Executar("FI_SP_ExcluirBeneficiario", parametros);
         }
 
         private List<DML.Cliente> Converter(DataSet ds)

@@ -2409,6 +2409,7 @@ input[type="button"].btn-block {
   font-style: normal;
   font-weight: normal;
   line-height: 1;
+  right: 1px;
 }
 
 .glyphicon-asterisk:before {
@@ -5701,7 +5702,7 @@ body.modal-open,
 .modal-footer {
   padding: 19px 20px 20px;
   margin-top: 15px;
-  text-align: right;
+  text-align: left;
   border-top: 1px solid #e5e5e5;
 }
 

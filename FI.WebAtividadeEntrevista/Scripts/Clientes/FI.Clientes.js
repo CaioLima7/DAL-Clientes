@@ -31,7 +31,6 @@ $(document).ready(function () {
             }
         });
     })
-    
 })
 
 function ModalDialog(titulo, texto) {
@@ -57,3 +56,32 @@ function ModalDialog(titulo, texto) {
     $('body').append(texto);
     $('#' + random).modal('show');
 }
+
+
+
+$(document).ready(function () {
+    $('#formBeneficiario').submit(function (e) {
+        e.preventDefault();
+        $.ajax({
+            url: "/Cliente/IncluirBeneficiario",
+            method: "POST",
+            data: {
+                "NOME": $(this).find("#NomeBeneficiario").val(),
+                "CPF": $(this).find("#CpfBeneficiario").val().split(".").join("").replace("-", "")
+            },
+            error:
+                function (r) {
+                    if (r.status == 400)
+                        ModalDialog("Ocorreu um erro", r.responseJSON);
+                    else if (r.status == 500)
+                        ModalDialog("Ocorreu um erro", "Ocorreu um erro interno no servidor.");
+                },
+            success:
+                function (r) {
+                    ModalDialog("Sucesso!", r)
+                    $("#formCadastro")[0].reset();
+                    $('#modalExemplo').modal('hide')
+                }
+        });
+    })
+})
